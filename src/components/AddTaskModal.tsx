@@ -5,9 +5,11 @@ import {
   Category,
   Priority,
   Status,
+  RequestedBy,
   CATEGORIES,
   PRIORITIES,
   PRIORITY_LABELS,
+  REQUESTED_BY_OPTIONS,
   STATUSES,
 } from "@/lib/types";
 
@@ -20,6 +22,7 @@ interface AddTaskModalProps {
     priority: Priority;
     status: Status;
     category: Category;
+    requestedBy: RequestedBy;
     dueDate?: string;
   }) => void;
 }
@@ -30,6 +33,7 @@ export default function AddTaskModal({ open, onClose, onAdd }: AddTaskModalProps
   const [priority, setPriority] = useState<Priority>("medium");
   const [status, setStatus] = useState<Status>("todo");
   const [category, setCategory] = useState<Category>("Personal");
+  const [requestedBy, setRequestedBy] = useState<RequestedBy>("Libby");
   const [dueDate, setDueDate] = useState("");
   const titleRef = useRef<HTMLInputElement>(null);
 
@@ -40,6 +44,7 @@ export default function AddTaskModal({ open, onClose, onAdd }: AddTaskModalProps
       setPriority("medium");
       setStatus("todo");
       setCategory("Personal");
+      setRequestedBy("Libby");
       setDueDate("");
       setTimeout(() => titleRef.current?.focus(), 100);
     }
@@ -57,6 +62,7 @@ export default function AddTaskModal({ open, onClose, onAdd }: AddTaskModalProps
       priority,
       status,
       category,
+      requestedBy,
       dueDate: dueDate || undefined,
     });
   };
@@ -146,15 +152,32 @@ export default function AddTaskModal({ open, onClose, onAdd }: AddTaskModalProps
             </div>
             <div>
               <label className="mb-1 block text-xs font-medium text-warm-500">
-                Due Date
+                Requested By
               </label>
-              <input
-                type="date"
-                value={dueDate}
-                onChange={(e) => setDueDate(e.target.value)}
+              <select
+                value={requestedBy}
+                onChange={(e) => setRequestedBy(e.target.value as RequestedBy)}
                 className="w-full rounded-lg border border-warm-200 px-3 py-2 text-sm focus:border-sage-500 focus:ring-1 focus:ring-sage-500 focus:outline-none"
-              />
+              >
+                {REQUESTED_BY_OPTIONS.map((r) => (
+                  <option key={r} value={r}>
+                    {r}
+                  </option>
+                ))}
+              </select>
             </div>
+          </div>
+
+          <div>
+            <label className="mb-1 block text-xs font-medium text-warm-500">
+              Due Date
+            </label>
+            <input
+              type="date"
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+              className="w-full rounded-lg border border-warm-200 px-3 py-2 text-sm focus:border-sage-500 focus:ring-1 focus:ring-sage-500 focus:outline-none"
+            />
           </div>
 
           <div className="mt-2 flex justify-end gap-2">

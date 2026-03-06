@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Task, Category, Priority, Status, STATUSES } from "@/lib/types";
+import { Task, Category, Priority, Status, RequestedBy, STATUSES } from "@/lib/types";
 import Header from "./Header";
 import FilterBar from "./FilterBar";
 import TaskColumn from "./TaskColumn";
@@ -12,6 +12,7 @@ export default function Board() {
   const [loading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState<Category | "all">("all");
   const [filterPriority, setFilterPriority] = useState<Priority | "all">("all");
+  const [filterRequestedBy, setFilterRequestedBy] = useState<RequestedBy | "all">("all");
   const [showAddModal, setShowAddModal] = useState(false);
 
   const fetchTasks = useCallback(async () => {
@@ -50,6 +51,7 @@ export default function Board() {
     priority: Priority;
     status: Status;
     category: Category;
+    requestedBy: RequestedBy;
     dueDate?: string;
   }) => {
     const res = await fetch("/api/tasks", {
@@ -71,6 +73,7 @@ export default function Board() {
   const filteredTasks = tasks.filter((t) => {
     if (filterCategory !== "all" && t.category !== filterCategory) return false;
     if (filterPriority !== "all" && t.priority !== filterPriority) return false;
+    if (filterRequestedBy !== "all" && t.requestedBy !== filterRequestedBy) return false;
     return true;
   });
 
@@ -91,8 +94,10 @@ export default function Board() {
       <FilterBar
         selectedCategory={filterCategory}
         selectedPriority={filterPriority}
+        selectedRequestedBy={filterRequestedBy}
         onCategoryChange={setFilterCategory}
         onPriorityChange={setFilterPriority}
+        onRequestedByChange={setFilterRequestedBy}
       />
 
       {/* Columns */}

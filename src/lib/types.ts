@@ -1,6 +1,7 @@
 export type Priority = "high" | "medium" | "low";
 export type Status = "todo" | "in-progress" | "done";
 export type Category = "Liora" | "Family" | "Personal" | "Lev";
+export type RequestedBy = "Libby" | "Jenny" | "Barric" | "Reedy";
 
 export interface Task {
   id: string;
@@ -9,12 +10,14 @@ export interface Task {
   priority: Priority;
   status: Status;
   category: Category;
+  requestedBy: RequestedBy;
   dueDate?: string;
   createdAt: string;
 }
 
 export const CATEGORIES: Category[] = ["Liora", "Family", "Personal", "Lev"];
 export const PRIORITIES: Priority[] = ["high", "medium", "low"];
+export const REQUESTED_BY_OPTIONS: RequestedBy[] = ["Libby", "Jenny", "Barric", "Reedy"];
 export const STATUSES: { key: Status; label: string }[] = [
   { key: "todo", label: "To Do" },
   { key: "in-progress", label: "In Progress" },
@@ -26,6 +29,13 @@ export const CATEGORY_COLORS: Record<Category, string> = {
   Family: "bg-purple-100 text-purple-800",
   Personal: "bg-sky-100 text-sky-800",
   Lev: "bg-orange-100 text-orange-800",
+};
+
+export const REQUESTED_BY_COLORS: Record<RequestedBy, string> = {
+  Libby: "text-sage-600",
+  Jenny: "text-purple-600",
+  Barric: "text-sky-600",
+  Reedy: "text-teal-600",
 };
 
 export const PRIORITY_BORDER: Record<Priority, string> = {

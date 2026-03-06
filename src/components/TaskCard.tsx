@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Task, CATEGORY_COLORS, PRIORITY_BORDER, PRIORITY_LABELS, Status, STATUSES } from "@/lib/types";
+import { Task, CATEGORY_COLORS, PRIORITY_BORDER, PRIORITY_LABELS, REQUESTED_BY_COLORS, Status, STATUSES } from "@/lib/types";
 
 interface TaskCardProps {
   task: Task;
@@ -49,6 +49,14 @@ export default function TaskCard({ task, onUpdate, onDelete }: TaskCardProps) {
         {/* Meta row */}
         <div className="flex items-center gap-2 text-xs text-warm-400">
           <span>{PRIORITY_LABELS[task.priority]}</span>
+          {task.requestedBy && (
+            <>
+              <span>·</span>
+              <span className={REQUESTED_BY_COLORS[task.requestedBy]}>
+                from {task.requestedBy}
+              </span>
+            </>
+          )}
           {task.dueDate && (
             <>
               <span>·</span>

@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readTasks, writeTasks } from "@/lib/tasks";
+import { requireAuth } from "@/lib/api-auth";
 
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const authError = await requireAuth(request);
+  if (authError) return authError;
+
   const { id } = await params;
   const body = await request.json();
   const tasks = await readTasks();
@@ -21,9 +25,12 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const authError = await requireAuth(request);
+  if (authError) return authError;
+
   const { id } = await params;
   const tasks = await readTasks();
   const index = tasks.findIndex((t) => t.id === id);
