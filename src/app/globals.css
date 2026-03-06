@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #faf8f5;
+  --color-foreground: #3d3929;
+  --color-sage-50: #f0f4f0;
+  --color-sage-100: #dce5dc;
+  --color-sage-200: #b8ccb8;
+  --color-sage-500: #6b8f71;
+  --color-sage-600: #577a5d;
+  --color-sage-700: #3f5c43;
+  --color-warm-50: #fdfcfa;
+  --color-warm-100: #f5f2ed;
+  --color-warm-200: #e8e3db;
+  --color-warm-300: #d4cdc1;
+  --color-warm-400: #b0a694;
+  --color-warm-500: #8c8070;
+  --color-warm-700: #5c5347;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* Smooth transitions for interactive elements */
+.task-card {
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.task-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Column drop highlight */
+.column-drop-active {
+  background: var(--color-sage-50);
+  outline: 2px dashed var(--color-sage-200);
+  outline-offset: -2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-warm-300);
+  border-radius: 3px;
+}

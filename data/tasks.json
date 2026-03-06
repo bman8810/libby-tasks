@@ -1,0 +1,39 @@
+[
+  {
+    "id": "task-001",
+    "title": "Board recertification letter",
+    "description": "Draft and submit the board recertification letter for dermatology credentials renewal.",
+    "priority": "high",
+    "status": "todo",
+    "category": "Personal",
+    "createdAt": "2026-03-01T10:00:00.000Z"
+  },
+  {
+    "id": "task-002",
+    "title": "Review website redesign mockups",
+    "description": "Go through the new Liora Dermatology website mockups from the design team and provide feedback.",
+    "priority": "medium",
+    "status": "in-progress",
+    "category": "Liora",
+    "createdAt": "2026-02-28T09:00:00.000Z"
+  },
+  {
+    "id": "task-003",
+    "title": "Plan Lev's spring activities",
+    "description": "Research toddler-friendly spring classes and outdoor activities. Look into swim lessons, music class, and local park programs.",
+    "priority": "low",
+    "status": "todo",
+    "category": "Lev",
+    "dueDate": "2026-03-20",
+    "createdAt": "2026-03-02T14:00:00.000Z"
+  },
+  {
+    "id": "task-004",
+    "title": "Schedule date night",
+    "description": "Pick a restaurant and book a sitter for a date night with Barric.",
+    "priority": "medium",
+    "status": "todo",
+    "category": "Family",
+    "createdAt": "2026-03-03T11:00:00.000Z"
+  }
+]
