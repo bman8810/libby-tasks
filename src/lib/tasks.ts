@@ -5,8 +5,7 @@ import { Task } from "./types";
 const DATA_PATH = path.join(process.cwd(), "data", "tasks.json");
 
 function useKV(): boolean {
-  return false; // KV not provisioned yet — JSON file is primary
-  // return !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
+  return !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
 }
 
 // --- JSON file storage (fallback for local dev) ---
